@@ -1,0 +1,91 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+Import iris dataset
+
+
+df=pd.read_csv('/content/8836201/iris.csv')
+
+displaying first 5 record
+
+df.head()
+
+Displaying information about the data set
+
+df.info()
+
+checking for null values
+
+df.isnull().sum()
+
+Counting number of varieties
+
+df["variety"].value_counts()
+
+checking for duplicates
+
+df[df.duplicated()]
+
+Visualisation
+
+Histogram
+
+df['sepal.length'].plot(kind='hist')
+plt.show()
+
+df.hist()
+plt.show()
+
+box plot
+
+df.boxplot()
+plt.show()
+
+df.boxplot(by='variety')
+plt.show()
+
+scatter plot
+
+df.plot(kind='scatter',x='sepal.width',y='petal.width',s=15)
+plt.show()
+
+df.plot(kind='scatter',x='sepal.length',y='petal.length',s=15,color='G')
+plt.show()
+
+sns.scatterplot(data=df,x="petal.length",y="petal.width",hue="variety")
+plt.show
+
+distribution chart
+
+df.plot()
+plt.title("All graph")
+plt.show()
+
+scatter matrix
+
+sns.pairplot(df,hue='variety')
+plt.title("")
+plt.show()
+
+Bubble chart
+
+fig = plt.figure(figsize = (14, 8))
+ax = sns.scatterplot(data=df, x="sepal.length", y="sepal.width",legend=False, sizes=(20, 2000))
+ax.set(title='Bubble Chart - Seaborn')
+plt.show()
+
+from pandas.plotting import andrews_curves
+p=andrews_curves(df,'variety')
+
+density chart
+
+df.plot(kind='density')
+plt.show()
+
+parallel chart
+
+pd.plotting.parallel_coordinates(df.drop("sepal.width",axis=1),"variety",colormap="cool")
+plt.show()
